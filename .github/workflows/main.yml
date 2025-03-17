@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bazel
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Build with Bazel
+        run: bazel build //...
